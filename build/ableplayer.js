@@ -6189,7 +6189,7 @@ var AblePlayerInstances = [];
 	};
 
 	AblePlayer.prototype.getYouTubeCaptionTracks = function (youTubeId) {
-
+		console.log("AblePlayer.prototype.getYouTubeCaptionTracks = function (youTubeId) {");
 		// get data via YouTube IFrame Player API, and push data to this.tracks & this.captions
 		// NOTE: Caption tracks are not available through the IFrame Player API
 		// until AFTER the video has started playing.
@@ -6213,7 +6213,7 @@ var AblePlayerInstances = [];
 			// play video briefly (required in order to load the captions module)
 			// and after the apiChange event is triggered, try again to retreive tracks
 			this.youTubePlayer.addEventListener('onApiChange',function(x) {
-
+console.log("this.youTubePlayer.addEventListener('onApiChange',function(x) {");
 				// getDuration() also requires video to play briefly
 				// so, let's set that while we're here
 				thisObj.duration = thisObj.youTubePlayer.getDuration();
@@ -8521,17 +8521,21 @@ var AblePlayerInstances = [];
 				duration = this.media.duration;
 			}
 			else if (this.player === 'youtube') {
+				console.log("this.player === 'youtube'");
 				if (this.youTubePlayerReady) {
 					if (this.duration > 0) {
 						// duration was already retrieved while checking for captions
 						duration = this.duration;
+						console.log("duration already set");
 					}
 					else {
 						duration = this.youTubePlayer.getDuration();
+						console.log("getting duration again");
 					}
 				}
 				else { // the YouTube player hasn't initialized yet
 					duration = 0;
+					console.log("duration = 0");
 				}
 			}
 			if (duration === undefined || isNaN(duration) || duration === -1) {
